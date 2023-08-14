@@ -1,6 +1,15 @@
 # Тестовое задание на позицию начинающий программист/стажёр в 1AK-GROUP
 ### Косарев Павел
 ___
+Для запуска проекта в ОС должен быть установлен python 3.11.
+Далее необходимо выполнить следующие команды:
++ git clone git@github.com:KosarevPV/library_flask.git
++ py -3.11 library_flask\run.py
++ library_flask\venvLIB\Scripts\activate
++ python -m pip install -r library_flask\requirements.txt
++ python library_flask\app.py
+
+___
 ### Технологический стек
 python 3.11, Flask 2.3.2
 
