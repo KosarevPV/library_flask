@@ -2,6 +2,7 @@
 ### Косарев Павел
 ___
 Для запуска проекта в ОС должен быть установлен python 3.11 и Git.
+
 Далее необходимо выполнить следующие команды:
 + git clone https://github.com/KosarevPV/library_flask.git
 + py -3.11 library_flask\run.py
