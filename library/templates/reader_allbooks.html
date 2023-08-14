@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block head %}
+  <style>
+    .card{
+      border-radius: 25px;
+      /* border-top-right-radius: 25px;
+      border-bottom-left-radius: 25px; */
+      background-color:  white; 
+      box-shadow: 10px 15px 10px #4a4e69;
+      width: 92%;
+    }
+
+    .card-title{
+      margin-bottom: 0 !important;
+      font-family: 'Bebas Neue', cursive;
+    }
+
+    a{
+      color: #003049 !important;
+      text-decoration: none;
+    }
+
+    small{
+      color: lightslategray;
+    }
+
+    p{
+      color: rgb(43, 37, 37);
+    }
+
+    /* i{
+      padding: 0px 7px;
+      cursor: pointer;
+    } */
+
+  </style>
+{% endblock head %}
+
+{% block content %}
+
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <div class="form-group">
+                {{ form.id.label(class="form-control-label") }}
+                {% if form.id.errors %}
+                    {{ form.id(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.id.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.id(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+
+
+
+<h2 class="card-title" style="display:inline">Список ваших книг:</h2>
+  {% for book in books %}
+  <div class="container" style="display: flex;">
+    <div class="card" style="margin-bottom: 20px;">
+      <div class="card-body">
+        <h4 class="card-title">Книга: {{ book.book.title}}</h4>
+                  {% if book.book.author|length > 1 %}
+          <p style="display:inline"> Авторы: </p>
+          {% for author in book.book.author %}
+          {% if book.book.author[-1] == author %}
+          <p style="display:inline"> {{ author.name }} {{ author.surname }}</p>
+          {% else %}
+          <p style="display:inline"> {{ author.name }} {{ author.surname }}, </p>
+          {% endif %}
+          {% endfor %}
+          {% else %}
+          <p style="display:inline">Автор: {{ book.book.author[0].name }} {{ book.book.author[0].surname }}</p>
+          {% endif %}
+          <br>
+        <small>Код книги: {{ book.book.id }}</small><br>
+        <small>Дата и время выдачи книги: {{ book.dt_created }}</small><br>
+          {% if book.dt_hand_over %}
+            <small>Дата и время возврата книги: {{ book.dt_hand_over }}</small><br>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock content %}
